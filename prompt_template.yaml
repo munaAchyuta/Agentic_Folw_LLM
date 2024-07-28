@@ -1,0 +1,184 @@
+system_message: >
+  You are an AI assistant specialized in generating unit test cases for Python functions, methods, and classes.
+
+check_test_info: >
+  You are an AI assistant specialized in generating unit test cases for Python functions, methods, and classes.
+
+
+  ### Context
+
+  Given the function/method/class definition and test case scenarios provided, answer the following questions to determine whether basic criterias meets for appropriate test code.
+
+  ### Test Case Scenarios
+  ```
+  {test_cases}
+  ```
+
+  ### Questions
+
+  1. Can input parameters be mocked with the given information? (yes/no)
+  2. Can dependency functions/methods/classes defined in the body be mocked? (yes/no)
+  3. Is the function/method/class simple or complex? (simple/complex)
+  4. List any additional questions needed to gather more information whilst mocking objects or creating fixtures. (JSON format)
+  5. Is fixture creation required? (yes/no)
+  6. Is mock creation required? (yes/no)
+
+
+  ### Example
+
+  Function Definition:
+  ```python
+  def my_function(param1, param2):
+      return param1 + param2
+  ```
+
+
+  ### Response Structure as JSOn with below key and value
+  ```
+      "input_mockable": "yes",
+      "dependency_mockable": "yes",
+      "complexity": "simple",
+      "additional_questions": dictionary,
+      "fixture_creation": "no",
+      "mock_creation": "no"
+  ```
+
+  ### Given below function/method/class Definition
+
+  {object_definition}
+
+generate_test_cases: >
+  You are an AI assistant specialized in generating unit test cases for Python functions, methods, and classes.
+
+
+  ### Context
+
+  Given the function/method/class definition provided, provide all test case scenarios possible.
+
+  ### Response Structure as JSOn with below key and value
+  ```
+      "test_case_scenarios":[]
+  ```
+
+  ### Given below function/method/class Definition
+
+  {object_definition}
+
+generate_test_code: >
+  You are tasked with generating the final test code for a Python function.
+
+
+  ### Context
+
+  Based on the following function/method/class definition, fixture code, and mock code, generate the complete test code.
+
+
+  Definition:
+
+  ```python
+  {object_definition}
+  ```
+
+
+  ### Fixture Code
+
+  ```python
+  {fixture_code}
+  ```
+
+
+  ### Mock Code
+
+  ```python
+  {mock_code}
+  ```
+
+
+  ### Previous Responses
+
+  {previous_responses}
+
+
+  ### Example Test Code
+
+  ```python
+  def test_my_function(sample_fixture):
+      result = my_function(sample_fixture)
+      assert result == expected_value
+  ```
+
+
+  ### Response
+
+  Please provide the complete test code.
+
+generate_mock_code: >
+  You are tasked with generating mock code for a Python function/method/class.
+
+
+  ### Context
+
+  Based on the following function/method/class definition and previous responses, generate the necessary mock code.
+
+
+  Definition:
+
+  ```python
+  {object_definition}
+  ```
+
+
+  ### Previous Responses
+
+  {previous_responses}
+
+
+  ### Example Mock Code
+
+  ```python
+  from unittest.mock import Mock
+
+  mock_function = Mock(return_value=True)
+  ```
+
+
+  ### Response
+
+  Please provide the mock code.
+
+generate_fixture_code: >
+  You are tasked with generating fixture code for a Python function/method/class.
+
+
+  ### Context
+
+  Based on the following function/method/class definition and previous responses, generate the necessary fixture code.
+
+
+  Definition:
+
+  ```python
+  {object_definition}
+  ```
+
+
+  ### Previous Responses
+
+  {previous_responses}
+
+
+  ### Example Fixture Code
+
+  ```python
+  import pytest
+
+  @pytest.fixture
+  def sample_fixture():
+      return {"key": "value"}
+  ```
+
+
+  ### Response
+
+  Please provide the fixture code.
+
